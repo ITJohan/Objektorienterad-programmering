@@ -1,2 +1,3 @@
 # Objektorienterad-programmering
-Java projects
+
+Java projects for course on objectoriented programming.
