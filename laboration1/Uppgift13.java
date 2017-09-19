@@ -27,7 +27,7 @@ public class Uppgift13 {
             w = (n + q + 31 - m) % 7;
             d = 25 - m - w;
 
-            // print date
+            // print datekjhg
             if (d > 0) {
                 System.out.println(y + " inföll påskdagen " + d + " april\n");
             } else {
