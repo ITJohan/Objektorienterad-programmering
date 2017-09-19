@@ -1,6 +1,3 @@
-/**
- * Created by jolindk on 2017-09-05.
- */
 import java.util.Scanner;
 import javax.swing.*;
 
