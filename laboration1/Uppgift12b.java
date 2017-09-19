@@ -8,11 +8,11 @@ public class Uppgift12b {
         // calculate the sum
         do {
             term = pm * (1 / n);
-            sum = sum + term;
+            sum += term;
             n += 2;
-            pm = pm * -1;
+            pm *= -1;
         } while (Math.abs(term) > 0.00001);
-
+        
         // print the sum
         System.out.println(sum * 4);
     }
