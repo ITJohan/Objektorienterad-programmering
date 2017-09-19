@@ -14,4 +14,4 @@ public class Uppgift12 {
         // print the sum
         System.out.println(sum * 4);
     }
-}
+}    
