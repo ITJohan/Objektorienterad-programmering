@@ -21,6 +21,15 @@ public class Cleaner {
 	//        The robot has the same location and facing the same direction
         private void cleanCorridors() {
                 //The implementation is your work to do!
+		for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                                robot.makeLight();
+                                robot.move();
+                                if (j == 3) {
+                                        robot.turnLeft();
+                                }
+                        }
+                }
         }//cleanCorridors
 }//Cleaner 
 
