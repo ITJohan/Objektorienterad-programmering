@@ -1,6 +1,3 @@
-/**
- * Created by jolindk on 2017-09-05.
- */
 import javax.swing.*;
 
 public class Uppgift08 {
