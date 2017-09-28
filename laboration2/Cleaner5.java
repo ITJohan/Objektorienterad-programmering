@@ -16,36 +16,54 @@ public class Cleaner5 {
     //after:  All cells in the corridors are light.
     //        The robot has the same location and facing the same direction
     private void cleanCorridors() {
-        Location startPosition = robot.getLocation();               // get start position
-        int startDirection = robot.getDirection();                  // get start direction
+        // get start position and direction
+        Location startPosition = robot.getLocation();
+        int startDirection = robot.getDirection();
 
-        Location currentPosition = new Location(0, 0);                                   // initialize current position
-        int currentDirection = 0;                                       // initialize current direction
+        // initialize current pos
+        Location currentPosition = new Location(0, 0);
 
-        // do until startposition
-        do {
-            while (robot.frontIsClear()) {                          // move until wall
-                if (robot.onDark()) {                               // make dark squares light
+        // handle first moves to get out of start pos
+        if (!robot.frontIsClear()) {
+            robot.turnLeft();
+            if (!robot.frontIsClear()) {
+                robot.turnLeft();
+            }
+        }
+        if (robot.onDark()) {
+            robot.makeLight();
+        }
+        robot.move();
+
+        // do until start position
+        while (!(startPosition.equals(currentPosition))) {
+
+            // move until wall and start pos
+            while (robot.frontIsClear() && !startPosition.equals(currentPosition)) {
+
+                // turn dark into light
+                if (robot.onDark()) {
                     robot.makeLight();
                 }
+
                 robot.move();
+                currentPosition = robot.getLocation();
             }
-            robot.turnLeft();                                       // turn if wall
-            if (!robot.frontIsClear()) {                            // if facing wall again, turn clockwise
+
+            // handle wall and corners
+            robot.turnLeft();
+            if (!robot.frontIsClear()) {
                 robot.turnLeft();
                 robot.turnLeft();
             }
-            if (robot.onDark()) {                               // make dark squares light
-                robot.makeLight();
-            }
-            robot.move();
-            if (startPosition.equals(currentPosition)) {
-                do {
-                    robot.turnLeft();
-                } while (!(currentDirection == startDirection));
-            }
-            currentPosition = robot.getLocation();                  // save current position
-            currentDirection = robot.getDirection();                // save current direction
-        } while (!(startPosition.equals(currentPosition)) || !(startDirection == currentDirection));
+
+            // update current pos
+            currentPosition = robot.getLocation();
+        }
+
+        // turn robot to start direction
+        while (startDirection != robot.getDirection()) {
+            robot.turnLeft();
+        }
     }//cleanCorridors
 }//Cleaner5
