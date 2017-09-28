@@ -25,14 +25,9 @@ public class Cleaner5 {
 
         // handle first moves to get out of start pos
         if (!robot.frontIsClear()) {
-            robot.turnLeft();
-            if (!robot.frontIsClear()) {
-                robot.turnLeft();
-            }
+            turn(1);
         }
-        if (robot.onDark()) {
-            robot.makeLight();
-        }
+        turnDarkToLight();
         robot.move();
 
         // do until start position
@@ -40,22 +35,13 @@ public class Cleaner5 {
 
             // move until wall and start pos
             while (robot.frontIsClear() && !startPosition.equals(currentPosition)) {
-
-                // turn dark into light
-                if (robot.onDark()) {
-                    robot.makeLight();
-                }
+                turnDarkToLight();
 
                 robot.move();
                 currentPosition = robot.getLocation();
             }
 
-            // handle wall and corners
-            robot.turnLeft();
-            if (!robot.frontIsClear()) {
-                robot.turnLeft();
-                robot.turnLeft();
-            }
+            turn(2);
 
             // update current pos
             currentPosition = robot.getLocation();
@@ -66,4 +52,20 @@ public class Cleaner5 {
             robot.turnLeft();
         }
     }//cleanCorridors
+
+    // turn dark into light
+    private void turnDarkToLight() {
+        if (robot.onDark()) {
+            robot.makeLight();
+        }
+    }
+
+    // handle walls and corners
+    private void turn(int j) {
+        robot.turnLeft();
+        if (!robot.frontIsClear()) {
+            for (int i = 0; i < j; i++)
+                robot.turnLeft();
+        }
+    }
 }//Cleaner5
