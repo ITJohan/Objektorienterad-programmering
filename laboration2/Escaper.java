@@ -34,7 +34,6 @@ public class Escaper {
 
 			// makes move according to wall setup
 			if ((frontSide && !rightSide && backSide && !leftSide) ||
-					(frontSide && !rightSide && !backSide && !leftSide) ||
 					(frontSide && rightSide && backSide && !leftSide)) {
 
 				robot.move();
