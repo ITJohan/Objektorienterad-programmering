@@ -30,6 +30,31 @@ public class Cleaner2 {
                     robot.turnLeft();
                 }
             }
+            
+            /* KOMMENTAR samma sak här, bara updelning och förtydlinganden
+             private void cleanCorridors(){
+        moveLengthAndTurn(4,4);
+
+        //The implementation is your work to do!
+    }//cleanCorridors
+
+    void moveLengthAndTurn(int times, int length) {
+        for (int i = 0; i < times; i++) {
+            moveLength(length);
+            robot.turnLeft();
+        }
+    }
+
+    void moveLength(int length){
+        for(int i=0;i < length;i++){
+            robot.move();
+            if(robot.onDark() == true) {
+                robot.makeLight();
+            }
+        }
+
+    }*/
+          
         }
     }//cleanCorridors
 }//Cleaner2
