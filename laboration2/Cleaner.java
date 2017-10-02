@@ -27,6 +27,24 @@ public class Cleaner {
                                 robot.move();
                                 if (j == 3) {
                                         robot.turnLeft();
+/*private void cleanCorridors(){     KOMMENTAR: Jag delade upp funktionerna i flera olika som du ser nedan för att enklare läsa
+            moveLengthAndTurn(4,4);
+
+}//cleanCorridors
+
+    void moveLengthAndTurn(int times, int length) {
+        for (int i = 0; i < times; i++) {
+            moveLength(length);
+            robot.turnLeft();
+        }
+    }
+
+    void moveLength(int length){
+            for(int i=0;i < length;i++){
+                robot.move();
+                robot.makeLight();
+            }
+	    */
                                 }
                         }
                 }
