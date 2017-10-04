@@ -31,25 +31,16 @@ public class MazeFinder {
 			scanPaths();
 
 			// makes move according to wall setup
-			if ((frontSide && !rightSide && backSide && !leftSide) ||
-				(frontSide && !rightSide && !backSide && !leftSide) ||
-				(frontSide && rightSide && backSide && !leftSide)) {
-
-				robot.move();
-			} else if ((frontSide && rightSide && backSide && leftSide) ||
-					(!frontSide && rightSide && backSide && leftSide) ||
-					(!frontSide && !rightSide && backSide && leftSide) ||
-					(frontSide && !rightSide && backSide && leftSide)) {
-
+			if (leftSide) {
 				robot.turnLeft();
 				robot.move();
-			} else if (!frontSide && !rightSide && backSide && !leftSide) {
-
-				uTurn();
+			} else if (frontSide) {
 				robot.move();
-			} else if ((!frontSide && rightSide && backSide && !leftSide)) {
-
+			} else if (rightSide) {
 				turnRight();
+				robot.move();
+			} else {
+				uTurn();
 				robot.move();
 			}
 
