@@ -68,33 +68,4 @@ public class Cleaner5 {
                 robot.turnLeft();
         }
     }
-    /* KOMMENTAR har inte riktigt jämnfört dem jättenoga men tror eventuellt jag skippar lite kod men är osäker, vi får nog gå igenom 
-    sista tillsammans
-    
-    void cleanCorridorsUpToPosition() {
-        Location start = robot.getLocation(); //decides the start location
-
-        boolean home = false;
-
-        while (home == false) {  //checks if the robot is home
-
-            if (robot.frontIsClear()) {  // the robot will move if no obstacle in front of it
-                robot.move();
-                if (robot.onDark()) {  // the robot will change the square it´s on if the square is dark.
-                    robot.makeLight();
-                }
-                Location currentLocation = robot.getLocation(); //after moving the new location will be recorded
-                if (currentLocation.equals(start)) {   //the robot will tell the function that it´s home and stop moving
-                    home = true;                        //if it´s current location matches the starting location
-                }
-            }
-            else {
-                    robot.turnLeft(); //the robot will turn left if hindered by an obstacle
-                    if (robot.frontIsClear() != true) { //the robot will turn 180 degrees if an obstacle still is in front of it
-                        robot.turnLeft();
-                        robot.turnLeft();
-                    } //the robot does not necessery point in the right direction compared to "start" but that was not in the assignment
-                      //but i think it should´ve been since it is on the same difficulty level
-
-*/
 }//Cleaner5
