@@ -13,7 +13,7 @@ public class Escaper {
 	public void createEnviroment() { 
 		RobotWorld  world = RobotWorld.load("src/room.txt"); 
 		robot = new Robot(4, 5, Robot.WEST, world);
-		robot.setDelay(30);
+		robot.setDelay(250);
 	}//createEnviroment 
  
 	//before: robot is inside the room
@@ -23,9 +23,11 @@ public class Escaper {
 		Location goalPos = new Location(4, 6);
 		Location currentPos = robot.getLocation();
 
-		// move forward until wall
-		while (robot.frontIsClear())
+		// move forward until wall or goal position
+		while (robot.frontIsClear() && !currentPos.equals(goalPos)) {
 			robot.move();
+			currentPos = robot.getLocation();
+		}
 
 		// then follow wall principle
 		while (!currentPos.equals(goalPos)) {
