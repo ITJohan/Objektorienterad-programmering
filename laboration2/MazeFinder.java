@@ -2,7 +2,7 @@ public class MazeFinder {
 	private Robot robot;
 
 	// booleans for checking walls, true if wall, false if no wall
-	private boolean frontSide, rightSide, backSide, leftSide;
+	private boolean frontSide, rightSide, leftSide;
 
 	public static void main(String[] args) {
 		MazeFinder finder = new MazeFinder();
@@ -55,7 +55,6 @@ public class MazeFinder {
 		robot.turnLeft();
 		leftSide = robot.frontIsClear();
 		robot.turnLeft();
-		backSide = robot.frontIsClear();
 		robot.turnLeft();
 		rightSide = robot.frontIsClear();
 		robot.turnLeft();
