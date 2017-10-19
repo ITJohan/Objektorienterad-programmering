@@ -1,32 +1,30 @@
-public class MazeFinder { 
+public class MazeFinder {
 	private Robot robot;
 
 	// booleans for checking walls, true if wall, false if no wall
 	private boolean frontSide, rightSide, backSide, leftSide;
 
-	public static void main(String[] args) { 
-		MazeFinder finder = new MazeFinder(); 
-		finder.createEnviroment(); 
-		finder.findExit(); 
-	}//main 
+	public static void main(String[] args) {
+		MazeFinder finder = new MazeFinder();
+		finder.createEnviroment();
+		finder.findExit();
+	}//main
 
-	public void createEnviroment() { 
-		RobotWorld world = RobotWorld.load("src/maze.txt"); 
-		robot = new Robot(2, 0, Robot.EAST, world);
-		robot.setDelay(50);
-	}//createEnviroment 
+	public void createEnviroment() {
+		RobotWorld world = RobotWorld.load("src/maze.txt");
+		robot = new Robot(2, 0, Robot.WEST, world);
+		robot.setDelay(10);
+	}//createEnviroment
 
 	// The robot finds the way through a simply connected maze
 	//before: The maze is simply connected.
 	//        The robot is at the entrance of the maze.
 	//after:  The robot is at the exit of the maze
 	public void findExit() {
-		// initialize position variables
-		Location goalPos = new Location(7, 20);
-		Location currentPos = robot.getLocation();
+		boolean goal = false;
 
 		// do until goal position
-		while (!currentPos.equals(goalPos)) {
+		while (!goal) {
 
 			scanPaths();
 
@@ -44,8 +42,10 @@ public class MazeFinder {
 				robot.move();
 			}
 
-			// update corrent position
-			currentPos = robot.getLocation();
+			// if about to exit world, set goal to true
+			if (robot.atEndOfWorld()) {
+				goal = true;
+			}
 		}
 	}// findExit
 
