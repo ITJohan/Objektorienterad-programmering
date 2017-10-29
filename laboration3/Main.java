@@ -18,7 +18,7 @@ public class Main {
 
         // setup song
         SoundDevice device = new SoundDevice();
-        Song song = new Song(50);
+        Song song = new Song(100);
 
         // setup variables
         int pitch;
@@ -28,7 +28,7 @@ public class Main {
         while (sc.hasNext()) {
             pitch = Integer.parseInt(sc.next());
             duration = Double.parseDouble(sc.next());
-            song.add(MusicUtils.harmonic(pitch, duration * tempo));
+            song.add(MusicUtils.harmonic(pitch, duration * (240 / tempo)));
         }
 
         // close scanner
