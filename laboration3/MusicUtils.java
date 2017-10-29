@@ -2,11 +2,9 @@ import java.util.Random;
 import java.lang.Math;
 
 public class MusicUtils {
-    // global arrayLength
-    static int arrayLength;
-
     // generates sine sound
     public static double[] sine(double freq, double duration) {
+        int arrayLength = (int)(duration*SoundDevice.SAMPLING_RATE);
         int n = (int)(duration*SoundDevice.SAMPLING_RATE);
         double[] a = new double[n];
         double dx = 2*Math.PI*freq / SoundDevice.SAMPLING_RATE;
@@ -18,6 +16,7 @@ public class MusicUtils {
 
     // generates pluck sound
     public static double[] pluck(double freq, double duration) {
+        int arrayLength = (int)(duration*SoundDevice.SAMPLING_RATE);
         Random r = new Random();
         double[] a = new double[arrayLength];
         int p = (int)(SoundDevice.SAMPLING_RATE / freq); // number of samplings in a cycle
@@ -40,7 +39,8 @@ public class MusicUtils {
     }
 
     // returns the average of two note arrays
-    public static double[] average(double[] t1, double[] t2) {
+    public static double[] average(double[] t1, double[] t2, double duration) {
+        int arrayLength = (int)(duration*SoundDevice.SAMPLING_RATE);
         double average[] = new double[arrayLength];
 
         for (int i = 0; i < arrayLength; i++) {
@@ -52,9 +52,9 @@ public class MusicUtils {
 
     // returns average (harmonic) of three note arrays
     public static double[] harmonic(int pitch, double duration) {
-        arrayLength = (int)(duration*SoundDevice.SAMPLING_RATE);
+        int arrayLength = (int)(duration*SoundDevice.SAMPLING_RATE);
         double[] harmonic = new double[arrayLength];
 
-        return average(average(note(pitch - 12, duration), note(pitch + 12, duration)), note(pitch, duration));
+        return average(average(note(pitch - 12, duration), note(pitch + 12, duration), duration), note(pitch, duration), duration);
     }
 }
