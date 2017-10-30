@@ -1,0 +1,67 @@
+public class MyColorProgram { 
+   public static void main(String[] args) throws Exception { 
+      int[][][] original = ColorImage.read("C:\\Users\\Alfred\\Downloads\\lab4\\StudentFiler\\mushroom.jpeg");
+      int[][][] gray = toGray(original); //only use this line i you are using toBlackWhite, if not change gray to original in line 5
+      int[][][] manipulated = toBlackWhite(gray);
+      ColorImage.write("upDownMushroom.jpeg", manipulated); 
+      ColorImageWindow iw = new ColorImageWindow(original, manipulated); 
+   }//main 
+
+   public static int[][][] upDown(int[][][] samples) { 
+      int[][][] newSamples = new int[samples.length][samples[0].length][3]; 
+      for (int row = 0; row < samples.length; row = row + 1)
+         for (int col = 0; col < samples[row].length; col = col + 1) 
+            for (int c = 0; c < samples[row][col].length; c = c + 1) 
+               newSamples[row][col][c] = samples[samples.length-row-1][col][c]; 
+      return newSamples; 
+   }//upDown
+
+    public static int[][][] leftRight(int[][][] samples){
+       int[][][] newSamples = new int [samples.length][samples[0].length][3];
+       for (int row = 0; row < samples.length; row= row + 1)
+           for (int col = 0; col <samples[row].length; col= col + 1)
+               for (int c = 0; c < samples[row][col].length; c= c + 1)
+                   newSamples[row][col][c] = samples[row][samples[row].length-col-1][c];
+       return newSamples;
+    }//leftRight
+
+    public static int[][][] invert(int[][][] samples){
+        int[][][] newSamples = new int [samples.length][samples[0].length][3];
+        for (int row = 0; row < samples.length; row= row + 1)
+            for (int col = 0; col <samples[row].length; col= col + 1)
+                for (int c = 0; c < samples[row][col].length; c= c + 1)
+                    newSamples[row][col][c] = 255 - samples[row][col][c];
+        return newSamples;
+    }//invert
+
+    public static int[][][] toGray(int[][][] samples) {
+        int[][][] newSamples = new int[samples.length][samples[0].length][3];
+        int r, g, b, L;
+        for (int row = 0; row < samples.length; row = row + 1)
+            for (int col = 0; col < samples[row].length; col = col + 1) {
+                r = samples[row][col][0];
+                g = samples[row][col][1];
+                b = samples[row][col][2];
+                for (int c = 0; c < samples[row][col].length; c = c + 1) {
+                    L = (int) Math.round(0.229 * r + 0.587 * g + 0.114 * b);
+                    newSamples[row][col][c] = L;
+                }
+            }
+        return newSamples;
+    }//toGray
+
+    public static int[][][] toBlackWhite(int[][][] samples) {
+        int[][][] newSamples = new int[samples.length][samples[0].length][3];
+        for (int row = 0; row < samples.length; row = row + 1)
+            for (int col = 0; col < samples[row].length; col = col + 1)
+                for (int c = 0; c < samples[row][col].length; c = c + 1)
+                    if (samples[row][col][c] < 128)
+                        newSamples[row][col][c] = 0;
+                    else
+                        newSamples[row][col][c] = 255;
+
+                    return newSamples;
+    }// toBlackWhite
+
+
+}//MyColorProgram
